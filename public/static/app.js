@@ -315,12 +315,18 @@ function renderGuidelinesTab() {
       <!-- ACマスターカードガイドライン -->
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-2">
-          <i class="fas fa-credit-card mr-2 text-red-600"></i>ACマスターカード ガイドライン
+          <i class="fas fa-credit-card mr-2 text-red-600"></i>ACマスターカード ガイドライン（提供済み - 確認・編集可能）
         </label>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-3 mb-2">
+          <p class="text-green-700 text-sm">
+            <i class="fas fa-check-circle mr-2"></i>
+            ACマスターカードガイドラインは既に設定済みです。内容を確認または編集できます。
+          </p>
+        </div>
         <textarea 
           id="guidelineAcMaster" 
-          rows="6" 
-          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+          rows="8" 
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition font-mono text-xs"
           placeholder="ACマスターカードに関するガイドラインとレギュレーションを入力してください..."
         >${state.guidelines.acMaster}</textarea>
       </div>
@@ -431,8 +437,9 @@ function loadGuidelines() {
   if (saved) {
     state.guidelines = JSON.parse(saved)
   } else {
-    // JCBガイドラインのデフォルト値を設定
+    // デフォルト値を設定
     state.guidelines.jcb = getDefaultJCBGuideline()
+    state.guidelines.acMaster = getDefaultACMasterGuideline()
     // 初期値を保存
     localStorage.setItem('guidelines', JSON.stringify(state.guidelines))
   }
@@ -502,6 +509,78 @@ function getDefaultJCBGuideline() {
 ❌ ポイント: 必ず貯まる、絶対お得
 ❌ 対象者: 誰でも作れる、学生でも簡単
 ❌ 比較: 業界No.1、最強、一番お得
+
+詳細は提供済みの完全版ガイドラインを参照してください。`
+}
+
+// ACマスターカードデフォルトガイドライン
+function getDefaultACMasterGuideline() {
+  return `# ACマスターカード アフィリエイトガイドライン
+
+## 1. 絶対禁止表現
+❌ 審査: 審査が甘い、通りやすい、簡単、柔軟、緩い、申し込みやすい
+❌ 確実性: 確実に通る、必ず作れる、100%通過、誰でも作れる
+❌ 対象者: ブラックでも可能、債務整理経験者でも、他社で落ちた方も
+❌ 年齢: 18歳以上、20歳以上、学生可、未成年可
+❌ その他: 最後の砦、駆け込み寺、審査なし、無審査、即日融資
+
+## 2. 必須指定表記
+✅ 審査時間: 最短20分※
+   注釈: ※お申込時間や審査によりご希望に添えない場合がございます。
+
+✅ 在籍確認: 原則、お勤め先へ在籍確認の電話なし※
+   注釈: ※在籍確認が必要と判断された場合は、お勤め先に確認のご連絡をする場合がございます。
+
+✅ 自動契約機: 自動契約機(むじんくん)
+   - 括弧は半角必須
+   - 台数表記は禁止（「約900台」❌ → 「全国に設置」✅）
+
+## 3. 貸付条件（必須記載）
+【融資額】1万円~300万円(ショッピング枠利用時)
+【貸付利率(実質年率)】2.4%~17.9% ※ショッピング枠ご利用時
+【返済方式】定額リボルビング方式
+【返済期間・返済回数】最長5年3ヶ月・1回~63回
+【遅延損害金(年率)】20.0%
+【担保・連帯保証人】不要
+
+※注意: 旧金利(3.0%~18.0%)は使用禁止
+
+## 4. 会社情報（必須記載）
+【商号】アコム株式会社
+【本社所在地】東京都千代田区内幸町2-1-1 東京汐留ビルディング15階・16階
+【登録番号】関東財務局長(15)第00022号
+【協会会員番号】日本貸金業協会会員 第000002号
+【お問い合わせ】0120-07-1000
+
+※注意: 旧登録番号(14)は使用禁止
+
+## 5. ステルスマーケティング表記（必須）
+記事・ページの冒頭に以下を記載:
+【広告】当サイトは広告による収益を得ています。本ページではアフィリエイトプログラムにより、ACマスターカードをご紹介しています。
+
+## 6. CTAリンク・遷移先
+✅ 必須リンク先: https://www.acom.co.jp/lineup/credit/
+❌ 禁止: 内部記事へのリンク、他のランディングページ
+
+## 7. 許容表現
+✅ 使用可能: 独自の審査基準、審査が早い、スピーディーな審査
+✅ 対象者: 安定した収入と返済能力を有する方
+
+## 8. 禁止される記事コンセプト
+❌ ブラックリスト・債務整理関連記事
+❌ 審査の甘さを訴求する記事
+❌ 確実性を保証する記事
+
+## 9. 画像・リンクURL保持（絶対変更禁止）
+- ACマスターカード 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/ACマスターカード.webp
+- ACマスターカード CTA: https://iwataworks.jp/article/ac-master-card
+
+## 10. 追加レギュレーション（2025年12月15日更新）
+✅ 金利変更: 2.4%~17.9% (2026年1月6日0:00以降)
+✅ 登録番号更新: (15)第00022号
+✅ 住所変更: 東京汐留ビルディング15階・16階
+❌ Apple Pay表記禁止
+❌ 計算式表記禁止
 
 詳細は提供済みの完全版ガイドラインを参照してください。`
 }
