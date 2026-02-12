@@ -6,7 +6,7 @@
 
 - **対象カード**: JCB、ACマスターカード、楽天カード
 - **技術スタック**: Hono + TypeScript + TailwindCSS + OpenAI API
-- **デプロイ**: Cloudflare Pages
+- **デプロイ**: Cloudflare Pages ✅ デプロイ済み
 
 ## 機能一覧
 
@@ -349,12 +349,27 @@ npm run clean-port
 fuser -k 3000/tcp
 ```
 
+## URL情報
+
+### 本番環境（Cloudflare Pages）
+- **本番URL**: https://creditcard-regulations.pages.dev/
+- **最新デプロイURL**: https://754517f1.creditcard-regulations.pages.dev
+- **GitHubリポジトリ**: https://github.com/ebatowriter/creditcard-regulations
+- **デプロイ日**: 2026-02-12
+
+### 開発環境
+- **サンドボックスURL**: https://3000-ilbxtz6nh2o21hj438xc4-de59bda9.sandbox.novita.ai
+- **ローカル開発**: http://localhost:3000
+
 ## セキュリティ
 
 - OpenAI APIキーは環境変数で管理
 - `.dev.vars` はGitから除外
 - パスワード認証は本番環境では必ず変更してください
 - 本番デプロイ時は `wrangler pages secret` を使用
+- **本番環境の環境変数設定済み**:
+  - `OPENAI_API_KEY`: ✅ 設定完了
+  - `APP_PASSWORD`: ✅ 設定完了（初期値: 0908）
 
 ## ライセンス
 
