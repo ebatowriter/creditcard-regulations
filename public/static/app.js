@@ -334,12 +334,18 @@ function renderGuidelinesTab() {
       <!-- 楽天カードガイドライン -->
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-2">
-          <i class="fas fa-credit-card mr-2 text-pink-600"></i>楽天カード ガイドライン
+          <i class="fas fa-credit-card mr-2 text-pink-600"></i>楽天カード ガイドライン（提供済み - 確認・編集可能）
         </label>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-3 mb-2">
+          <p class="text-green-700 text-sm">
+            <i class="fas fa-check-circle mr-2"></i>
+            楽天カードガイドラインは既に設定済みです。内容を確認または編集できます。
+          </p>
+        </div>
         <textarea 
           id="guidelineRakuten" 
-          rows="6" 
-          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+          rows="8" 
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition font-mono text-xs"
           placeholder="楽天カードに関するガイドラインとレギュレーションを入力してください..."
         >${state.guidelines.rakuten}</textarea>
       </div>
@@ -440,6 +446,7 @@ function loadGuidelines() {
     // デフォルト値を設定
     state.guidelines.jcb = getDefaultJCBGuideline()
     state.guidelines.acMaster = getDefaultACMasterGuideline()
+    state.guidelines.rakuten = getDefaultRakutenGuideline()
     // 初期値を保存
     localStorage.setItem('guidelines', JSON.stringify(state.guidelines))
   }
@@ -581,6 +588,99 @@ function getDefaultACMasterGuideline() {
 ✅ 住所変更: 東京汐留ビルディング15階・16階
 ❌ Apple Pay表記禁止
 ❌ 計算式表記禁止
+
+詳細は提供済みの完全版ガイドラインを参照してください。`
+}
+
+// 楽天カードデフォルトガイドライン
+function getDefaultRakutenGuideline() {
+  return `# 楽天カード アフィリエイト広告ガイドライン
+
+## 1. 禁止表現の6大カテゴリ
+❌ ①楽天カードに関する誤情報の訴求
+❌ ②楽天カードにとって不利益となる訴求
+❌ ③他社で審査に落ちた方でも作れる・審査が緩い等の訴求【最重要】
+❌ ④専業主婦など収入のない方を狙う訴求
+❌ ⑤最短即日審査等の当日発表訴求
+❌ ⑥有利誤認の訴求
+
+## 2. 審査関連（完全禁止）
+❌ 審査甘い/緩い/柔軟/優しい/簡単/易しい/低い
+❌ 審査通過率/審査通過実績/審査に通りやすい
+❌ 新規成約率が高い
+❌ 審査に不安がある方でも/審査落ちした方でも
+❌ 他社で落ちた方でも/過去に審査に落ちた経験
+❌ ブラックでもOK/無職でもOK
+❌ 誰でも作れる/絶対に審査を通る
+❌ どこよりも簡単/一番通りやすい
+
+## 3. 即日・時間関連（完全禁止）
+❌ 最短即日審査/最短即日発行
+❌ 即日発行/即日で使える/当日発行
+❌ 最短10分/最短20分/最短○分
+❌ 最短日発行/最短○営業日発行
+❌ 今すぐ使える/すぐに発行
+
+✅ 許容: デジタルカード対応、審査結果はメールでお知らせ
+
+## 4. 収入・属性関連（要注意）
+❌ 専業主婦でも作れる
+❌ 収入がなくても申込可能
+❌ 無職でもOK
+❌ 年収○○円以下でも審査通過
+❌ 収入に不安がある方でも
+
+✅ 許容: 高校生を除く18歳以上の方が申込可能
+✅ 許容: パート・アルバイトでも申込可能
+✅ 許容: 学生でも申込可能（高校生除く）
+
+## 5. SPU関連（完全禁止）
+❌ SPU○倍/SPU最大○倍/SPU+1倍/SPU+2倍
+❌ 楽天市場で3倍/楽天市場で常時3倍以上
+❌ ポイント3倍以上/最大○倍
+
+✅ 許容: 楽天市場でポイント還元率アップ
+✅ 許容: 楽天のサービス活用でお得
+✅ 許容: ポイント還元率1.0%〜
+
+## 6. 期間限定表現（禁止）
+❌ 今なら○○ポイント
+❌ 期間限定キャンペーン
+❌ ○月○日まで
+❌ 本日限り/今だけ
+
+## 7. 必須記載事項
+【会社情報】
+発行会社名: 楽天カード株式会社
+所在地: 東京都世田谷区玉川一丁目14番1号 楽天クリムゾンハウス
+電話番号: 03-6740-6740
+公式サイト: https://www.rakuten-card.co.jp/
+
+【申込資格】
+- 高校生を除く18歳以上の方
+- ゴールド・プレミアムカードは20歳以上で安定収入のある方
+※詳細な申込資格は公式サイトでご確認ください
+
+## 8. 正式カード名
+✅ 楽天カード
+✅ 楽天PINKカード
+✅ 楽天ゴールドカード
+✅ 楽天プレミアムカード
+✅ 楽天ANAマイレージクラブカード
+✅ 楽天カード アカデミー
+✅ 楽天銀行カード
+✅ 楽天ビジネスカード
+
+## 9. 審査基準を推測する表現（禁止）
+❌ 楽天サービス利用が審査に有利
+❌ 楽天会員なら審査で優遇
+❌ 楽天経済圏の利用実績がプラス評価
+❌ 自動審査システムで人為的な厳格さを排除
+
+## 10. キャッシング訴求の禁止
+❌ キャッシング枠の積極的訴求
+❌ 貸付を助長する表現
+❌ 借入を推奨する内容
 
 詳細は提供済みの完全版ガイドラインを参照してください。`
 }
