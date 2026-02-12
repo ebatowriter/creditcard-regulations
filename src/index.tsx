@@ -44,23 +44,36 @@ app.post('/api/correct-text', async (c) => {
     // OpenAI APIに送信するプロンプト
     const systemPrompt = `あなたはクレジットカードメディアのSEO記事を修正する専門家です。
 
-以下のガイドラインとレギュレーションに基づいて、テキストの内容を修正してください：
-
-${guidelines || 'ガイドラインが設定されていません'}
-
-## 修正対象カード
-- JCB関連の内容
+## 修正対象カード（この3つのみ修正）
+- JCB関連の内容（JCB CARD W、JCB CARD S、JCBゴールド等）
 - ACマスターカード関連の内容
 - 楽天カード関連の内容
 
-## 修正ルール
-1. 上記3つのカードに関連する内容のみを修正する
-2. その他のクレジットカードの内容は一切修正しない
-3. ガイドラインとレギュレーションに準拠する
-4. SEO観点で最適化する
-5. 正確で読みやすい日本語にする
+## 絶対に修正しないカード
+- 三井住友カード（NL）
+- 三井住友カード ゴールド（NL）
+- リクルートカード
+- その他JCB・ACマスターカード・楽天カード以外のすべてのカード
 
-修正したテキストのみを返してください。説明や追加のコメントは不要です。`
+---
+
+## 【JCBカード専用】ガイドライン・レギュレーション
+
+以下のガイドラインとレギュレーションに基づいて、JCB関連のテキストの内容を厳格に修正してください：
+
+${guidelines || 'ガイドラインが設定されていません'}
+
+## 修正実行ルール
+1. **判定**: テキストにJCB・ACマスターカード・楽天カードが含まれるか確認
+2. **修正**: 該当するカードのみガイドラインに従って修正
+3. **保持**: その他のカードは一字一句変更しない
+4. **精度**: すべての数値・表記を正確に修正
+5. **注釈**: 必要な注釈（※1、※2、※3等）を適切に追加
+
+## 出力形式
+- 修正したテキストのみを返す
+- 説明文や追加コメントは一切不要
+- 元のテキスト構造を維持`
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -117,25 +130,63 @@ app.post('/api/correct-html', async (c) => {
     // OpenAI APIに送信するプロンプト
     const systemPrompt = `あなたはクレジットカードメディアのSEO記事を修正する専門家です。
 
-以下のガイドラインとレギュレーションに基づいて、HTMLコードの内容を修正してください：
-
-${guidelines || 'ガイドラインが設定されていません'}
-
-## 修正対象カード
-- JCB関連の内容
+## 修正対象カード（この3つのみ修正）
+- JCB関連の内容（JCB CARD W、JCB CARD S、JCBゴールド等）
 - ACマスターカード関連の内容
 - 楽天カード関連の内容
 
-## 重要な制約
-1. HTMLの構造、タグ、クラス名、ID、属性は一切変更しない
-2. CSSスタイルやデザインに関わる部分は一切変更しない
-3. JavaScript関連の属性（onclick等）は一切変更しない
-4. テキストコンテンツのみを修正する
-5. 上記3つのカードに関連する内容のみを修正する
-6. その他のクレジットカードの内容は一切修正しない
-7. ガイドラインとレギュレーションに準拠する
+## 絶対に修正しないカード
+- 三井住友カード（NL）
+- 三井住友カード ゴールド（NL）
+- リクルートカード
+- その他JCB・ACマスターカード・楽天カード以外のすべてのカード
 
-修正したHTMLコードのみを返してください。説明や追加のコメントは不要です。`
+---
+
+## 【JCBカード専用】ガイドライン・レギュレーション
+
+以下のガイドラインとレギュレーションに基づいて、JCB関連のHTMLコードの内容を厳格に修正してください：
+
+${guidelines || 'ガイドラインが設定されていません'}
+
+## 【最重要】HTML修正の制約事項
+1. ✅ **修正可能**: テキストコンテンツのみ
+2. ❌ **絶対変更禁止**: 
+   - HTMLタグ構造（div、span、table、tr、td等）
+   - クラス名（class属性）
+   - ID属性
+   - スタイル属性（style、CSS）
+   - JavaScript関連属性（onclick、data-*等）
+   - 画像URL（src属性）- 特にJCBカード画像URLは完全保持
+   - リンクURL（href属性）- CTAリンクは完全保持
+   - その他すべての属性
+
+## 画像・リンクURL完全保持（絶対遵守）
+以下のURLは一切変更しないこと：
+- JCB CARD W 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/JCB-CARD-W.jpeg
+- JCB CARD W CTA: https://iwataworks.jp/article/jcb-w
+- JCB CARD S 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/JCBカード-S.webp
+- JCB CARD S CTA: https://iwataworks.jp/article/jcb-s
+- JCBゴールド 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/JCBゴールド.jpeg
+- JCBゴールド CTA: https://iwataworks.jp/article/jcb-gold
+
+## HTML修正実行ルール
+1. **判定**: HTMLに含まれるカード名を確認
+2. **修正**: JCB・ACマスターカード・楽天カード関連のテキストのみ修正
+3. **保持**: その他のカードのセクションは完全保持
+4. **構造**: HTMLの構造・属性を一切変更しない
+5. **URL**: 画像URLとリンクURLを完全保持
+
+## アクセシビリティ強化（JCBカードのみ）
+- alt属性: "JCB CARD W券面画像" 形式に変更
+- aria-label属性: "JCB CARD W公式サイトへ" 形式を追加
+- その他のカードのalt・aria-labelは変更しない
+
+## 出力形式
+- 修正したHTMLコードのみを返す
+- 説明文や追加コメントは一切不要
+- コードブロック記法（\`\`\`html）は使用しない
+- 元のHTML構造を完全に維持`
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',

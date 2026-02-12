@@ -296,12 +296,18 @@ function renderGuidelinesTab() {
       <!-- JCBガイドライン -->
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-2">
-          <i class="fas fa-credit-card mr-2 text-indigo-600"></i>JCBカード ガイドライン
+          <i class="fas fa-credit-card mr-2 text-indigo-600"></i>JCBカード ガイドライン（提供済み - 確認・編集可能）
         </label>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-3 mb-2">
+          <p class="text-green-700 text-sm">
+            <i class="fas fa-check-circle mr-2"></i>
+            JCBガイドラインは既に設定済みです。内容を確認または編集できます。
+          </p>
+        </div>
         <textarea 
           id="guidelineJcb" 
-          rows="6" 
-          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+          rows="8" 
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition font-mono text-xs"
           placeholder="JCBカードに関するガイドラインとレギュレーションを入力してください..."
         >${state.guidelines.jcb}</textarea>
       </div>
@@ -424,7 +430,80 @@ function loadGuidelines() {
   const saved = localStorage.getItem('guidelines')
   if (saved) {
     state.guidelines = JSON.parse(saved)
+  } else {
+    // JCBガイドラインのデフォルト値を設定
+    state.guidelines.jcb = getDefaultJCBGuideline()
+    // 初期値を保存
+    localStorage.setItem('guidelines', JSON.stringify(state.guidelines))
   }
+}
+
+// JCBデフォルトガイドライン
+function getDefaultJCBGuideline() {
+  return `# JCBクレジットカード広告表示ガイドライン
+
+## 1. ポイント・還元率表記
+✅ すべての還元率数値に「※」を付与
+✅ 注釈: ※還元率は交換商品により異なります。
+✅ ポイント名称: Oki Dokiポイント → J-POINT
+
+## 2. 年会費表記
+✅ すべての年会費に「（税込）」を明記
+✅ テーブルヘッダー: 年会費 → 年会費（税込）
+
+## 3. 対象年齢表記
+✅ JCB CARD W: 18～39歳限定
+✅ JCB CARD S: 年齢制限なし
+
+## 4. 発行スピード表記
+✅ 推奨: モバイル即時入会サービス（モバ即）対応
+✅ 注釈: ※9:00～20:00の申込完了で最短5分発行（審査状況により異なります）
+❌ 禁止: 最短5分で発行、即日発行可能、すぐ使える
+
+## 5. 審査・在籍確認表記
+❌ 禁止: 審査が甘い、通りやすい、柔軟な審査、学生でも作りやすい
+✅ 推奨: JCBオリジナルシリーズの信頼性、安定したカード発行実績
+✅ ヘッダー: 審査・発行 → カードの特徴
+
+## 6. 付帯保険表記
+✅ JCB CARD W・S: 海外旅行保険最高2,000万円（利用付帯）
+✅ JCBゴールド: 最高1億円の旅行保険付帯
+
+## 7. ブランド・商標表記
+✅ ポイント名称: Oki Dokiポイント → J-POINT
+✅ パートナー名称: Oki Dokiランド → J-POINTパートナー店
+✅ カード名称: JCB Card W → JCB CARD W
+✅ Amazon: Amazon → Amazon.co.jp※2（注釈追加）
+✅ セブン-イレブン: セブン → セブン‐イレブン※3（注釈追加）
+✅ スターバックス: スタバ → スターバックス※1（注釈追加）
+
+## 8. パートナー店・特約店表記
+✅ 統一名称: 優待店・特約店 → J-POINTパートナー店
+
+## 9. アクセシビリティ要件
+✅ 画像alt属性: "JCB CARD W券面画像"
+✅ リンクaria-label: "JCB CARD W公式サイトへ"
+
+## 10. 注釈・出典要件
+✅ 注釈エリア新設必須
+✅ 公式リンク: https://original.jcb.co.jp/
+
+## 11. 画像・リンクURL保持（絶対変更禁止）
+- JCB CARD W 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/JCB-CARD-W.jpeg
+- JCB CARD W CTA: https://iwataworks.jp/article/jcb-w
+- JCB CARD S 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/JCBカード-S.webp
+- JCB CARD S CTA: https://iwataworks.jp/article/jcb-s
+- JCBゴールド 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/JCBゴールド.jpeg
+- JCBゴールド CTA: https://iwataworks.jp/article/jcb-gold
+
+## 12. 禁止表現
+❌ 審査: 審査が甘い、通りやすい、柔軟、簡単
+❌ 発行: 絶対、必ず、確実に○分
+❌ ポイント: 必ず貯まる、絶対お得
+❌ 対象者: 誰でも作れる、学生でも簡単
+❌ 比較: 業界No.1、最強、一番お得
+
+詳細は提供済みの完全版ガイドラインを参照してください。`
 }
 
 // テキスト修正
