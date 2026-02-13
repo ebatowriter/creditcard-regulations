@@ -34,10 +34,12 @@ app.post('/api/login', async (c) => {
 // Text correction API (テキスト修正)
 app.post('/api/correct-text', async (c) => {
   try {
-    const { text, guidelines } = await c.req.json()
-    const apiKey = c.env.OPENAI_API_KEY
+    const { text, guidelines, apiKey } = await c.req.json()
     
-    if (!apiKey) {
+    // フロントエンドから送信されたAPIキーを優先、なければ環境変数を使用
+    const openaiApiKey = apiKey || c.env.OPENAI_API_KEY
+    
+    if (!openaiApiKey) {
       return c.json({ success: false, message: 'OpenAI APIキーが設定されていません' }, 500)
     }
 
@@ -376,7 +378,7 @@ JCB公式サイト: https://original.jcb.co.jp/
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
+        'Authorization': `Bearer ${openaiApiKey}`
       },
       body: JSON.stringify({
         model: 'gpt-4o',
@@ -417,10 +419,12 @@ JCB公式サイト: https://original.jcb.co.jp/
 // HTML correction API (HTML修正)
 app.post('/api/correct-html', async (c) => {
   try {
-    const { html, guidelines } = await c.req.json()
-    const apiKey = c.env.OPENAI_API_KEY
+    const { html, guidelines, apiKey } = await c.req.json()
     
-    if (!apiKey) {
+    // フロントエンドから送信されたAPIキーを優先、なければ環境変数を使用
+    const openaiApiKey = apiKey || c.env.OPENAI_API_KEY
+    
+    if (!openaiApiKey) {
       return c.json({ success: false, message: 'OpenAI APIキーが設定されていません' }, 500)
     }
 
@@ -877,7 +881,7 @@ ACマスターカードセクション末尾に以下を追加:
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
+        'Authorization': `Bearer ${openaiApiKey}`
       },
       body: JSON.stringify({
         model: 'gpt-4o',

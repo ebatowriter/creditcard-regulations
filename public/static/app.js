@@ -2,6 +2,7 @@
 const state = {
   isAuthenticated: false,
   currentTab: 'text', // 'text' or 'html'
+  apiKey: localStorage.getItem('openai_api_key') || '',
   guidelines: {
     jcb: '',
     acMaster: '',
@@ -115,16 +116,23 @@ function renderMainPage() {
             <i class="fas fa-code mr-2"></i>HTML修正
           </button>
           <button 
+            onclick="switchTab('settings')" 
+            id="tabSettings"
+            class="flex-1 py-4 px-6 font-semibold transition duration-200 ${state.currentTab === 'settings' ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:bg-gray-50'}"
+          >
+            <i class="fas fa-cog mr-2"></i>設定
+          </button>
+          <button 
             onclick="switchTab('guidelines')" 
             id="tabGuidelines"
             class="flex-1 py-4 px-6 font-semibold transition duration-200 ${state.currentTab === 'guidelines' ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:bg-gray-50'}"
           >
-            <i class="fas fa-book mr-2"></i>ガイドライン設定
+            <i class="fas fa-book mr-2"></i>ガイドライン
           </button>
         </div>
 
         <div class="p-6">
-          ${state.currentTab === 'text' ? renderTextTab() : state.currentTab === 'html' ? renderHtmlTab() : renderGuidelinesTab()}
+          ${state.currentTab === 'text' ? renderTextTab() : state.currentTab === 'html' ? renderHtmlTab() : state.currentTab === 'settings' ? renderSettingsTab() : renderGuidelinesTab()}
         </div>
       </div>
     </div>
@@ -367,8 +375,99 @@ function renderGuidelinesTab() {
   `
 }
 
-// イベントハンドラーの登録（ログイン）
-function attachLoginHandlers() {
+// 設定タブ
+function renderSettingsTab() {
+  return `
+    <div class="space-y-6">
+      <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+        <p class="text-yellow-800 text-sm">
+          <i class="fas fa-exclamation-triangle mr-2"></i>
+          <strong>重要:</strong> OpenAI APIキーはブラウザのLocalStorageに保存されます。セキュリティに注意してください。
+        </p>
+      </div>
+
+      <!-- OpenAI APIキー設定 -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          <i class="fas fa-key mr-2 text-indigo-600"></i>OpenAI APIキー
+        </label>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
+          <p class="text-blue-700 text-sm mb-2">
+            <i class="fas fa-info-circle mr-2"></i>
+            OpenAI APIキーは以下から取得できます：
+          </p>
+          <a 
+            href="https://platform.openai.com/account/api-keys" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:text-blue-700 underline text-sm"
+          >
+            https://platform.openai.com/account/api-keys
+            <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+          </a>
+        </div>
+        <div class="relative">
+          <input 
+            type="password" 
+            id="apiKeyInput" 
+            value="${state.apiKey}"
+            class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition font-mono text-sm"
+            placeholder="sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          />
+          <button
+            onclick="toggleApiKeyVisibility()"
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+            type="button"
+          >
+            <i id="apiKeyToggleIcon" class="fas fa-eye"></i>
+          </button>
+        </div>
+        <p class="text-xs text-gray-500 mt-2">
+          ${state.apiKey ? '✅ APIキーが設定されています' : '⚠️ APIキーが未設定です'}
+        </p>
+      </div>
+
+      <!-- パスワード設定の説明 -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          <i class="fas fa-lock mr-2 text-gray-600"></i>ログインパスワード
+        </label>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <p class="text-gray-700 text-sm mb-2">
+            現在のパスワード: <code class="bg-gray-200 px-2 py-1 rounded">0908</code>
+          </p>
+          <p class="text-gray-600 text-xs">
+            <i class="fas fa-info-circle mr-1"></i>
+            パスワードの変更は管理者に依頼してください
+          </p>
+        </div>
+      </div>
+
+      <!-- 保存ボタン -->
+      <div class="flex justify-center">
+        <button 
+          onclick="saveSettings()" 
+          class="px-8 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition duration-200 shadow-lg hover:shadow-xl"
+        >
+          <i class="fas fa-save mr-2"></i>設定を保存
+        </button>
+      </div>
+
+      <div id="settingsSuccess" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
+        <i class="fas fa-check-circle mr-2"></i>
+        設定を保存しました
+      </div>
+
+      <div id="settingsError" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+        <i class="fas fa-exclamation-circle mr-2"></i>
+        <span id="settingsErrorMessage"></span>
+      </div>
+    </div>
+  `
+}
+
+// ガイドライン設定タブ
+function renderGuidelinesTab() {
   const form = document.getElementById('loginForm')
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
@@ -978,9 +1077,19 @@ ${state.guidelines.acMaster || '（設定なし）'}
 ${state.guidelines.rakuten || '（設定なし）'}
     `.trim()
 
+    // APIキーをチェック
+    if (!state.apiKey) {
+      errorDiv.classList.remove('hidden')
+      errorMessage.textContent = 'OpenAI APIキーが設定されていません。設定タブで設定してください。'
+      btn.disabled = false
+      btn.innerHTML = '<i class="fas fa-magic mr-2"></i>修正を実行'
+      return
+    }
+
     const response = await axios.post('/api/correct-text', {
       text: inputText,
-      guidelines: guidelines
+      guidelines: guidelines,
+      apiKey: state.apiKey
     })
 
     if (response.data.success) {
@@ -1034,9 +1143,19 @@ ${state.guidelines.acMaster || '（設定なし）'}
 ${state.guidelines.rakuten || '（設定なし）'}
     `.trim()
 
+    // APIキーをチェック
+    if (!state.apiKey) {
+      errorDiv.classList.remove('hidden')
+      errorMessage.textContent = 'OpenAI APIキーが設定されていません。設定タブで設定してください。'
+      btn.disabled = false
+      btn.innerHTML = '<i class="fas fa-magic mr-2"></i>修正を実行'
+      return
+    }
+
     const response = await axios.post('/api/correct-html', {
       html: inputHtml,
-      guidelines: guidelines
+      guidelines: guidelines,
+      apiKey: state.apiKey
     })
 
     if (response.data.success) {
@@ -1085,6 +1204,56 @@ function previewHtml() {
 function closePreview() {
   const modal = document.getElementById('previewModal')
   modal.classList.add('hidden')
+}
+
+// 設定を保存
+function saveSettings() {
+  const apiKey = document.getElementById('apiKeyInput').value.trim()
+  const successDiv = document.getElementById('settingsSuccess')
+  const errorDiv = document.getElementById('settingsError')
+  const errorMessage = document.getElementById('settingsErrorMessage')
+  
+  // エラー・成功メッセージをリセット
+  successDiv.classList.add('hidden')
+  errorDiv.classList.add('hidden')
+  
+  // APIキーの検証
+  if (apiKey && !apiKey.startsWith('sk-')) {
+    errorDiv.classList.remove('hidden')
+    errorMessage.textContent = 'OpenAI APIキーは "sk-" で始まる必要があります'
+    return
+  }
+  
+  // LocalStorageに保存
+  if (apiKey) {
+    localStorage.setItem('openai_api_key', apiKey)
+    state.apiKey = apiKey
+  } else {
+    localStorage.removeItem('openai_api_key')
+    state.apiKey = ''
+  }
+  
+  // 成功メッセージを表示
+  successDiv.classList.remove('hidden')
+  setTimeout(() => {
+    successDiv.classList.add('hidden')
+  }, 3000)
+}
+
+// APIキーの表示/非表示を切り替え
+function toggleApiKeyVisibility() {
+  const input = document.getElementById('apiKeyInput')
+  const icon = document.getElementById('apiKeyToggleIcon')
+  
+  if (input.type === 'password') {
+    input.type = 'text'
+    icon.classList.remove('fa-eye')
+    icon.classList.add('fa-eye-slash')
+  } else {
+    input.type = 'password'
+    icon.classList.remove('fa-eye-slash')
+    icon.classList.add('fa-eye')
+  }
 }
 
 // アプリケーション起動
