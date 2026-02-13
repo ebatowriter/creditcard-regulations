@@ -492,6 +492,32 @@ function renderGuidelinesTab() {
   })
 }
 
+// イベントハンドラーの登録（ログイン）
+function attachLoginHandlers() {
+  const form = document.getElementById('loginForm')
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const password = document.getElementById('password').value
+    const errorDiv = document.getElementById('loginError')
+    const errorMessage = document.getElementById('loginErrorMessage')
+
+    try {
+      const response = await axios.post('/api/login', { password })
+      
+      if (response.data.success) {
+        state.isAuthenticated = true
+        renderApp()
+      } else {
+        errorDiv.classList.remove('hidden')
+        errorMessage.textContent = response.data.message
+      }
+    } catch (error) {
+      errorDiv.classList.remove('hidden')
+      errorMessage.textContent = error.response?.data?.message || 'ログインに失敗しました'
+    }
+  })
+}
+
 // イベントハンドラーの登録（メイン）
 function attachMainHandlers() {
   // ガイドラインタブの場合、テキストエリアの値を復元
