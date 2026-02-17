@@ -357,12 +357,12 @@ JCB公式サイト: https://original.jcb.co.jp/
 ---
 
 ## 修正実行ルール
-1. **判定**: テキストにJCB・ACマスターカード・楽天カードが含まれるか確認
-2. **カード特定**: どのカードに関する内容か正確に判定
-3. **JCBの場合**: 上記14項目チェックリストをすべて厳格に実行
-4. **ACマスターカード・楽天の場合**: 該当ガイドラインを適用
-5. **保持**: その他のカードは一字一句変更しない
-6. **精度**: すべての数値・表記を正確に修正
+1. 判定: テキストにJCB・ACマスターカード・楽天カードが含まれるか確認
+2. カード特定: どのカードに関する内容か正確に判定
+3. JCBの場合: 上記14項目チェックリストをすべて厳格に実行
+4. ACマスターカード・楽天の場合: 該当ガイドラインを適用
+5. 保持: その他のカードは一字一句変更しない
+6. 精度: すべての数値・表記を正確に修正
 
 ## 注釈の記載方法
 - 本文中: 「1.0%※」「最短5分※」「Amazon.co.jp※2」等
@@ -512,22 +512,18 @@ ${guidelines || 'ガイドラインが設定されていません'}
 - 対象者関連: 誰でも作れる、学生でも簡単
 - 比較関連: 業界No.1、最強、一番お得
 
-### 13. 必須記載事項の追加（スタイル付き） ✅
-以下をスタイル付きで追加:
+### 13. 必須記載事項の追加（統一デザイン） ✅
+以下を統一デザインで追加:
 
 \`\`\`html
-<div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin-top: 20px; font-size: 13px; color: #333; line-height: 1.7;">
-  <p style="margin: 0 0 8px 0;"><strong>【注釈】</strong></p>
-  <p style="margin: 0 0 5px 0;">※1 スターバックスは、スターバックス コーヒー ジャパン株式会社の登録商標です。</p>
-  <p style="margin: 0 0 5px 0;">※2 Amazon.co.jpは、Amazon.com, Inc.またはその関連会社の商標です。</p>
+<div style="background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 15px; margin-top: 20px; font-size: 12px; color: #666; line-height: 1.8;">
+  <p style="margin: 0 0 8px 0; font-weight: bold; color: #333;">【注釈】</p>
+  <p style="margin: 0 0 5px 0;">※1 スターバックス カードへのオンライン入金・オートチャージ、Starbucks eGift、モバイルオーダーが対象です。店舗でのご利用分・入金分はポイント倍付の対象となりません。</p>
+  <p style="margin: 0 0 5px 0;">※2 Amazon、Amazon.co.jpおよびそれらのロゴは、Amazon.com, Inc.またはその関連会社の商標です。</p>
   <p style="margin: 0 0 5px 0;">※3 セブン‐イレブンは、株式会社セブン‐イレブン・ジャパンの登録商標です。</p>
   <p style="margin: 0 0 5px 0;">※還元率は交換商品により異なります。</p>
-  <p style="margin: 0;">※9:00～20:00の申込完了で最短5分発行（審査状況により異なります）</p>
-</div>
-
-<div style="background-color: #f0f8ff; border: 1px solid #0066cc; border-radius: 8px; padding: 15px; margin-top: 15px; font-size: 13px; color: #333;">
-  <p style="margin: 0;"><strong>【公式サイト】</strong></p>
-  <p style="margin: 8px 0 0 0;">JCB公式サイト: <a href="https://original.jcb.co.jp/" target="_blank" rel="noopener" style="color: #0066cc; text-decoration: underline;">https://original.jcb.co.jp/</a></p>
+  <p style="margin: 0 0 5px 0;">※9:00～20:00の申込完了で最短5分発行（審査状況により異なります）</p>
+  <p style="margin: 0;">詳細は<a href="https://original.jcb.co.jp/" style="color: #0066cc; text-decoration: underline;" target="_blank" rel="noopener">JCB公式サイト</a>をご覧ください。</p>
 </div>
 \`\`\`
 
@@ -549,24 +545,26 @@ ${guidelines || 'ガイドラインが設定されていません'}
 - 対象者: ブラックでも可能、債務整理経験者でも、他社で落ちた方も
 - その他: 最後の砦、駆け込み寺、審査なし、無審査、誰でもOK、収入不問
 
-### 2. 審査時間の必須表記とスタイル ✅
+### 2. 審査時間の必須表記（統一デザイン） ✅
 テキスト修正:
 - 必須表記: 「最短20分※」
-- 注釈追加（小さめグレーテキスト）:
+- 注釈追加（統一デザイン）:
 \`\`\`html
-<p style="font-size: 12px; color: #666; margin-top: 8px; line-height: 1.6;">
-  ※お申込時間や審査によりご希望に添えない場合がございます。
-</p>
+<div style="background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 15px; margin-top: 20px; font-size: 12px; color: #666; line-height: 1.8;">
+  <p style="margin: 0 0 8px 0; font-weight: bold; color: #333;">【注釈】</p>
+  <p style="margin: 0;">※お申込時間や審査によりご希望に添えない場合がございます。</p>
+</div>
 \`\`\`
 
-### 3. 在籍確認の必須表記とスタイル ✅
+### 3. 在籍確認の必須表記（統一デザイン） ✅
 テキスト修正:
 - 必須表記: 「原則、お勤め先へ在籍確認の電話なし※」
-- 注釈追加:
+- 注釈追加（統一デザイン）:
 \`\`\`html
-<p style="font-size: 12px; color: #666; margin-top: 8px; line-height: 1.6;">
-  ※在籍確認が必要と判断された場合は、お勤め先に確認のご連絡をする場合がございます。
-</p>
+<div style="background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 15px; margin-top: 20px; font-size: 12px; color: #666; line-height: 1.8;">
+  <p style="margin: 0 0 8px 0; font-weight: bold; color: #333;">【注釈】</p>
+  <p style="margin: 0;">※在籍確認が必要と判断された場合は、お勤め先に確認のご連絡をする場合がございます。</p>
+</div>
 \`\`\`
 
 ### 4. 自動契約機の正確な表記 ✅
@@ -579,43 +577,41 @@ ${guidelines || 'ガイドラインが設定されていません'}
 - 「学生可」「未成年可」も削除
 - 代替表現: 「安定した収入と返済能力を有する方」
 
-### 6. 貸付条件の必須追加（枠付きスタイル） ✅
+### 6. 貸付条件の必須追加（統一デザイン） ✅
 ACマスターカードセクション末尾に以下を追加:
 \`\`\`html
-<div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 25px; margin-top: 30px; margin-bottom: 30px; font-size: 13px; color: #333; line-height: 1.7;">
-  <p style="margin: 0 0 15px 0; font-size: 16px; font-weight: bold; color: #333; border-bottom: 2px solid #3498db; padding-bottom: 10px;">ACマスターカード 貸付条件</p>
-  <p style="margin: 0 0 10px 0;"><strong>【融資額】</strong>1万円~300万円(ショッピング枠利用時)</p>
-  <p style="margin: 0 0 10px 0;"><strong>【貸付利率(実質年率)】</strong>2.4%~17.9% ※ショッピング枠ご利用時</p>
-  <p style="margin: 0 0 10px 0;"><strong>【返済方式】</strong>定額リボルビング方式</p>
-  <p style="margin: 0 0 10px 0;"><strong>【返済期間・返済回数】</strong>最長5年3ヶ月・1回~63回</p>
-  <p style="margin: 0 0 10px 0;"><strong>【遅延損害金(年率)】</strong>20.0%</p>
-  <p style="margin: 0 0 15px 0;"><strong>【担保・連帯保証人】</strong>不要</p>
-  <p style="margin: 0; font-size: 12px; color: #666;">※ご契約極度額により、金利が異なります。<br>※返済期間・回数は、ご利用内容によって異なります。</p>
+<div style="background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 15px; margin-top: 20px; font-size: 12px; color: #666; line-height: 1.8;">
+  <p style="margin: 0 0 12px 0; font-weight: bold; color: #333; font-size: 14px;">【ACマスターカード 貸付条件】</p>
+  <p style="margin: 0 0 8px 0; color: #333;"><strong>融資額:</strong> 1万円~300万円(ショッピング枠利用時)</p>
+  <p style="margin: 0 0 8px 0; color: #333;"><strong>貸付利率(実質年率):</strong> 2.4%~17.9% ※ショッピング枠ご利用時</p>
+  <p style="margin: 0 0 8px 0; color: #333;"><strong>返済方式:</strong> 定額リボルビング方式</p>
+  <p style="margin: 0 0 8px 0; color: #333;"><strong>返済期間・返済回数:</strong> 最長5年3ヶ月・1回~63回</p>
+  <p style="margin: 0 0 8px 0; color: #333;"><strong>遅延損害金(年率):</strong> 20.0%</p>
+  <p style="margin: 0 0 12px 0; color: #333;"><strong>担保・連帯保証人:</strong> 不要</p>
+  <p style="margin: 0;">※ご契約極度額により、金利が異なります。返済期間・回数は、ご利用内容によって異なります。</p>
 </div>
 \`\`\`
 
-### 7. 会社情報の必須追加（枠付きスタイル） ✅
+### 7. 会社情報の必須追加（統一デザイン） ✅
 ACマスターカードセクション末尾に以下を追加:
 \`\`\`html
-<div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 25px; margin-bottom: 30px; font-size: 13px; color: #333; line-height: 1.7;">
-  <p style="margin: 0 0 15px 0; font-size: 16px; font-weight: bold; color: #333; border-bottom: 2px solid #3498db; padding-bottom: 10px;">アコム株式会社 会社情報</p>
-  <p style="margin: 0 0 8px 0;"><strong>【商号】</strong>アコム株式会社</p>
-  <p style="margin: 0 0 8px 0;"><strong>【本社所在地】</strong>東京都千代田区内幸町2-1-1 東京汐留ビルディング15階・16階</p>
-  <p style="margin: 0 0 8px 0;"><strong>【登録番号】</strong>関東財務局長(15)第00022号</p>
-  <p style="margin: 0 0 8px 0;"><strong>【協会会員番号】</strong>日本貸金業協会会員 第000002号</p>
-  <p style="margin: 0;"><strong>【お問い合わせ】</strong>0120-07-1000</p>
+<div style="background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 15px; margin-top: 20px; font-size: 12px; color: #666; line-height: 1.8;">
+  <p style="margin: 0 0 12px 0; font-weight: bold; color: #333; font-size: 14px;">【会社情報】</p>
+  <p style="margin: 0 0 5px 0; color: #333;"><strong>商号:</strong> アコム株式会社</p>
+  <p style="margin: 0 0 5px 0; color: #333;"><strong>本社所在地:</strong> 東京都千代田区内幸町2‑1‑1 東京汐留ビルディング15‑16階</p>
+  <p style="margin: 0 0 5px 0; color: #333;"><strong>登録番号:</strong> 関東財務局長(15)第00022号</p>
+  <p style="margin: 0 0 5px 0; color: #333;"><strong>日本貸金業協会会員番号:</strong> 第000002号</p>
+  <p style="margin: 0;">お問い合わせ: <a href="tel:0120071000" style="color: #0066cc; text-decoration: underline;">0120‑07‑1000</a></p>
 </div>
 \`\`\`
 
-### 8. ステルスマーケティング表記（黄色枠） ✅
-ページ冒頭またはACマスターカードセクション冒頭に以下を追加:
+### 8. ステルスマーケティング表記必須化（統一デザイン） ✅
+ACマスターカード関連セクションの冒頭に以下を追加:
 \`\`\`html
-<div style="background-color: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
-  <p style="margin: 0 0 10px 0; font-size: 16px; font-weight: bold; color: #856404;">【広告】</p>
-  <p style="margin: 0; font-size: 14px; color: #856404; line-height: 1.6;">当サイトは広告による収益を得ています。本ページではアフィリエイトプログラムにより、ACマスターカードをご紹介しています。</p>
+<div style="background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 15px; margin-bottom: 20px; font-size: 12px; color: #856404; line-height: 1.8;">
+  <p style="margin: 0 0 8px 0; font-weight: bold; color: #333;">【広告】</p>
+  <p style="margin: 0;">当サイトは広告による収益を得ています。本ページではACマスターカードをアフィリエイトプログラムを通じてご紹介しています。</p>
 </div>
-\`\`\`
-
 ### 9. CTAリンク先の確認と修正 ✅
 - ACマスターカードのhref属性を確認
 - 必須URL: https://www.acom.co.jp/lineup/credit/
@@ -718,30 +714,17 @@ ACマスターカードセクション末尾に以下を追加:
 - 楽天経済圏の利用実績がプラス評価
 - 自動審査システムで人為的な厳格さを排除
 
-### 8. 申込資格の必須追加（枠付きスタイル） ✅
+### 8. 申込資格の必須追加（統一デザイン） ✅
 楽天カードセクション末尾に以下を追加:
 \`\`\`html
-<div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 25px; margin-top: 30px; margin-bottom: 30px; font-size: 13px; color: #333; line-height: 1.7;">
-  <p style="margin: 0 0 15px 0; font-size: 16px; font-weight: bold; color: #333; border-bottom: 2px solid #bf0000; padding-bottom: 10px;">楽天カードについて</p>
-  <p style="margin: 0 0 10px 0;"><strong>【申込資格】</strong>高校生を除く18歳以上の方</p>
-  <p style="margin: 0 0 10px 0;"><strong>【ゴールド・プレミアムカード】</strong>20歳以上で安定収入のある方</p>
-  <p style="margin: 0; font-size: 12px; color: #666;">※詳細な申込資格は<a href="https://www.rakuten-card.co.jp/" target="_blank" rel="noopener" style="color: #bf0000; text-decoration: underline;">楽天カード公式サイト</a>でご確認ください</p>
+<div style="background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 15px; margin-top: 20px; font-size: 12px; color: #666; line-height: 1.8;">
+  <p style="margin: 0 0 12px 0; font-weight: bold; color: #333; font-size: 14px;">【楽天カードについて】</p>
+  <p style="margin: 0 0 8px 0; color: #333;">申込資格は高校生を除く18歳以上の方です。詳細は<a href="https://www.rakuten-card.co.jp/" target="_blank" rel="noopener" style="color: #0066cc; text-decoration: underline;">楽天カード公式サイト</a>でご確認ください。</p>
+  <p style="margin: 0 0 5px 0; color: #333;"><strong>発行会社:</strong> 楽天カード株式会社</p>
+  <p style="margin: 0 0 5px 0; color: #333;"><strong>所在地:</strong> 東京都世田谷区玉川一丁目14番1号 楽天クリムゾンハウス</p>
+  <p style="margin: 0; color: #333;"><strong>電話番号:</strong> 03-6740-6740</p>
 </div>
 \`\`\`
-
-### 9. 会社情報の必須追加（枠付きスタイル） ✅
-楽天カードセクション末尾に以下を追加:
-\`\`\`html
-<div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 25px; margin-bottom: 30px; font-size: 13px; color: #333; line-height: 1.7;">
-  <p style="margin: 0 0 15px 0; font-size: 16px; font-weight: bold; color: #333; border-bottom: 2px solid #bf0000; padding-bottom: 10px;">楽天カード株式会社 会社情報</p>
-  <p style="margin: 0 0 8px 0;"><strong>【発行会社】</strong>楽天カード株式会社</p>
-  <p style="margin: 0 0 8px 0;"><strong>【所在地】</strong>東京都世田谷区玉川一丁目14番1号 楽天クリムゾンハウス</p>
-  <p style="margin: 0 0 8px 0;"><strong>【電話番号】</strong>03-6740-6740</p>
-  <p style="margin: 0;"><strong>【公式サイト】</strong><a href="https://www.rakuten-card.co.jp/" target="_blank" rel="noopener" style="color: #bf0000; text-decoration: underline;">https://www.rakuten-card.co.jp/</a></p>
-</div>
-\`\`\`
-
-### 10. 正式カード名の使用 ✅
 正式名称を使用（略称禁止）:
 - 楽天カード、楽天PINKカード、楽天ゴールドカード、楽天プレミアムカード
 - 楽天ANAマイレージクラブカード、楽天カード アカデミー、楽天銀行カード、楽天ビジネスカード
@@ -782,82 +765,60 @@ ACマスターカードセクション末尾に以下を追加:
 ---
 
 ## 【最重要】HTML修正の制約事項
-1. ✅ **修正可能**: 
-   - テキストコンテンツの修正
-   - 注釈・必須記載事項の追加（新規要素として追加）
-2. ❌ **絶対変更禁止**: 
-   - 既存のHTMLタグ構造（div、span、table、tr、td等）
-   - 既存のクラス名（class属性）
-   - 既存のID属性
-   - 既存のスタイル属性（style、CSS）
-   - JavaScript関連属性（onclick、data-*等）
-   - 画像URL（src属性）- 各カード画像URLは完全保持
-   - リンクURL（href属性）- CTAリンクは完全保持
-   - その他既存の属性
-
-## 【重要】注釈・必須記載事項の追加方法
-ガイドラインで必須とされる注釈や会社情報は、以下のスタイルで追加してください：
-
-### 注釈の追加スタイル
-注釈は小さめのテキスト（font-size: 12px-13px）、グレー色（color: #666 または #777）で表示：
-\`\`\`html
-<p style="font-size: 12px; color: #666; margin-top: 8px; line-height: 1.6;">
-  ※注釈内容をここに記載
-</p>
-\`\`\`
-
-### 会社情報・貸付条件の追加スタイル
-重要な情報は枠で囲み、読みやすく表示：
-\`\`\`html
-<div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin-top: 20px; font-size: 13px; color: #333; line-height: 1.7;">
-  <p style="margin: 0 0 8px 0;"><strong>【会社情報】</strong></p>
-  <p style="margin: 0 0 5px 0;">会社名、住所、電話番号等</p>
-</div>
-\`\`\`
-
-### 広告表記の追加スタイル（ACマスターカード）
-広告表記は目立つように黄色背景で表示：
-\`\`\`html
-<div style="background-color: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-  <p style="margin: 0; font-size: 14px; color: #856404; font-weight: bold;">【広告】</p>
-  <p style="margin: 8px 0 0 0; font-size: 13px; color: #856404;">当サイトは広告による収益を得ています。</p>
-</div>
-\`\`\`
-
-## 画像・リンクURL完全保持（絶対遵守）
-以下のURLは一切変更しないこと：
-
-【JCBカード】
-- JCB CARD W 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/JCB-CARD-W.jpeg
-- JCB CARD W CTA: https://iwataworks.jp/article/jcb-w
-- JCB CARD S 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/JCBカード-S.webp
-- JCB CARD S CTA: https://iwataworks.jp/article/jcb-s
-- JCBゴールド 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/JCBゴールド.jpeg
-- JCBゴールド CTA: https://iwataworks.jp/article/jcb-gold
-
-【ACマスターカード】
-- ACマスターカード 画像: https://iwataworks.jp/article/wp-content/uploads/2025/11/ACマスターカード.webp
-- ACマスターカード CTA: https://iwataworks.jp/article/ac-master-card
-
-## HTML修正実行ルール
-1. **判定**: HTMLに含まれるカード名を確認
-2. **カード特定**: どのカードに関する内容か正確に判定
-3. **ガイドライン適用**: 該当カードのガイドラインのみを適用
-4. **テキスト修正**: JCB・ACマスターカード・楽天カード関連のテキストのみ修正
-5. **注釈追加**: ガイドラインで必須とされる注釈を適切なスタイルで追加
+1. 判定: HTMLに含まれるカード名を確認
+2. カード特定: どのカードに関する内容か正確に判定
+3. ガイドライン適用: 該当カードのガイドラインのみを適用
+4. テキスト修正: JCB・ACマスターカード・楽天カード関連のテキストのみ修正
+5. 注釈追加: ガイドラインで必須とされる注釈を適切なスタイルで追加
    - JCB: ※還元率は交換商品により異なります。等
    - ACマスターカード: ※お申込時間や審査により〜、広告表記等
    - 楽天カード: 会社情報、申込資格等
-6. **会社情報追加**: 必須記載事項を枠付きで追加
-7. **保持**: その他のカードのセクションは完全保持
-8. **構造**: 既存のHTMLの構造・属性を一切変更しない
-9. **URL**: 画像URLとリンクURLを完全保持
+6. 会社情報追加: 必須記載事項を枠付きで追加
+7. 保持: その他のカードのセクションは完全保持
+8. 構造: 既存のHTMLの構造・属性を一切変更しない
+9. URL: 画像URLとリンクURLを完全保持
 
-## 注釈・追加要素の配置位置
-- カードセクションの直後に追加
-- または記事の末尾に追加
-- 既存要素の間に無理に挿入しない
-- 自然な位置に配置
+## 注釈・追加要素の配置位置【重要】
+### 配置ルール（優先順位順）
+1. テーブルの場合: テーブルの直後（</table>の後）に配置
+2. テキストの場合: 最後のテキスト段落の直後に配置
+3. セクションの場合: セクションの最後（セクション終了タグの直前）に配置
+4. 記事全体の場合: 記事の末尾に配置
+
+### 配置の具体例
+- テーブルの場合: </table>タグの直後に配置
+- テキストの場合: 最後の段落の直後に配置
+- セクションの場合: セクション終了タグの直前に配置
+
+## 注釈デザインの統一ルール【必須】
+すべてのカード（JCB、ACマスターカード、楽天カード）の注釈は以下のデザインで統一:
+
+### 統一スタイル仕様
+HTMLコード例（background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 15px; margin-top: 20px; font-size: 12px; color: #666; line-height: 1.8;）:
+
+<div style="background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 15px; margin-top: 20px; font-size: 12px; color: #666; line-height: 1.8;">
+  <p style="margin: 0 0 8px 0; font-weight: bold; color: #333;">【注釈】</p>
+  <p style="margin: 0 0 5px 0;">※還元率は交換商品により異なります。</p>
+  <p style="margin: 0 0 5px 0;">※1 スターバックス カードへのオンライン入金・オートチャージが対象です。</p>
+  <p style="margin: 0;">詳細は<a href="https://original.jcb.co.jp/" style="color: #0066cc; text-decoration: underline;" target="_blank" rel="noopener">JCB公式サイト</a>をご覧ください。</p>
+</div>
+
+### デザイン詳細
+- 背景色: #f5f5f5（明るいグレー）
+- 枠線: 1px solid #ddd（薄いグレー）
+- 角丸: border-radius 4px
+- 余白: padding 15px（内側）、margin-top 20px（上マージン）
+- 文字サイズ: font-size 12px（小さめ）
+- 文字色: color #666（ダークグレー、視認性確保）
+- 行間: line-height 1.8（読みやすさ確保）
+- 見出し色: color #333（より濃いグレー）
+- リンク色: color #0066cc（青）、text-decoration underline（下線）
+
+### 適用対象
+- JCBカードの注釈
+- ACマスターカードの注釈（審査時間、在籍確認、貸付条件等）
+- 楽天カードの注釈（会社情報、申込資格等）
+- すべてのカードで同じデザインを使用
 
 ## アクセシビリティ強化（対象カードのみ）
 - JCBカード: alt属性 "JCB CARD W券面画像"、aria-label "JCB CARD W公式サイトへ"
