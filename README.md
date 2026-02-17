@@ -47,7 +47,19 @@
    - LocalStorageに保存
    - セキュリティに関する注意喚起
 
-7. **注釈・必須記載事項の自動追加機能（v2.1.0）**
+7. **注釈・必須記載事項の自動追加機能（v2.6.0）**
+   - **注釈配置ルール（v2.6.0 NEW!）**
+     - テーブルの場合: テーブルの直後（</table>の後）に配置
+     - テキストの場合: 最後のテキスト段落の直後に配置
+     - セクションの場合: セクションの最後（セクション終了タグの直前）に配置
+     - 記事全体の場合: 記事の末尾に配置
+   - **デザイン統一（v2.6.0 NEW!）**
+     - 背景色: #f5f5f5（明るいグレー）
+     - 枠線: 1px solid #ddd（薄いグレー）
+     - 文字サイズ: 12px（小さめ）
+     - 文字色: #666（ダークグレー、視認性確保）
+     - リンク色: #0066cc（青）、下線付き
+     - すべてのカード（JCB、ACマスターカード、楽天カード）で統一
    - 注釈を小さめテキスト（font-size: 12px-13px）、グレー色で追加
    - 会社情報・貸付条件を枠付きで見やすく追加
    - 広告表記を目立つ黄色背景で追加（ACマスターカード）
@@ -114,9 +126,9 @@
 
 ## URLs
 
-- **開発環境**: https://3000-ilbxtz6nh2o21hj438xc4-de59bda9.sandbox.novita.ai
-- **GitHub**: （未設定）
-- **本番環境**: （未デプロイ）
+- **本番環境（メイン）**: https://creditcard-regulations.pages.dev/
+- **本番環境（最新デプロイ）**: https://034f3add.creditcard-regulations.pages.dev/
+- **GitHub**: https://github.com/ebatowriter/creditcard-regulations
 
 ## 使い方
 
@@ -203,13 +215,19 @@ APP_PASSWORD=0908
 # ビルド
 npm run build
 
-# デプロイ
-npm run deploy
+# デプロイ（本番環境）
+npm run deploy:prod
 
-# 本番環境の環境変数設定
-wrangler pages secret put OPENAI_API_KEY --project-name webapp
-wrangler pages secret put APP_PASSWORD --project-name webapp
+# 環境変数設定（初回のみ）
+npx wrangler pages secret put OPENAI_API_KEY --project-name creditcard-regulations
+npx wrangler pages secret put APP_PASSWORD --project-name creditcard-regulations
 ```
+
+### デプロイ状況
+- **プラットフォーム**: Cloudflare Pages
+- **ステータス**: ✅ デプロイ済み
+- **最終デプロイ**: 2026-02-17
+- **バージョン**: v2.6.0（注釈配置ルール・デザイン統一実装）
 
 ## プロジェクト構造
 
